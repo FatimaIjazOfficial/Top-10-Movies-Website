@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Movie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="heading">Select Movie</h1>
+    {% for movie in options %}
+    <div style="margin-bottom: 20px;">
+        <a href="{{ url_for('find_movie', id=movie.id) }}">
+            {% if movie.poster_path %}
+            <img src="{{ 'https://image.tmdb.org/t/p/w500' + movie.poster_path }}" alt="{{ movie.title }}" style="width: 100px; height: auto; margin-right: 10px;">
+            {% else %}
+            <img src="https://via.placeholder.com/100x150?text=No+Image" alt="No Image" style="width: 100px; height: auto; margin-right: 10px;">
+            {% endif %}
+            <span>{{ movie.title }} - {{ movie.release_date }}</span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
